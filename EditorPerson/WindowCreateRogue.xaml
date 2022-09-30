@@ -1,0 +1,75 @@
+﻿<Window x:Class="EditorPerson.WindowCreateRogue"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EditorPerson"
+        mc:Ignorable="d"
+        Title="WindowCreateRogue" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="11*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="207*"/>
+            <RowDefinition Height="16*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="18*"/>
+            <ColumnDefinition Width="767*"/>
+            <ColumnDefinition Width="15*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.Column="1" HorizontalAlignment="Left" Height="158" Margin="6,39,0,0" Grid.Row="5" Stroke="#FF716B6B" VerticalAlignment="Top" Width="326" OpacityMask="#FF636161" Fill="#FF635F8C"/>
+
+        <Slider x:Name="sliderStrength" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="108,9,0,0" Grid.Row="1" VerticalAlignment="Top" Width="418" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" ValueChanged="sliderStrength_ValueChanged"/>
+        <Label Grid.Column="1" Content="Strength:" HorizontalAlignment="Left" Margin="10,1,0,0" VerticalAlignment="Top" FontSize="16" Height="39" Width="74" RenderTransformOrigin="0.236,0.695" Grid.Row="1"/>
+        <TextBox Text="{Binding Value, ElementName=sliderStrength, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" HorizontalAlignment="Left" TextAlignment="Right" Grid.Row="1" VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.587,0.643" Height="18" Margin="548,12,0,0"/>
+
+        <Slider x:Name="sliderDexterity" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="108,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="418" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True"/>
+        <Label Grid.Column="1" Content="Dexterity:" HorizontalAlignment="Left" Margin="6,0,0,0" VerticalAlignment="Center" FontSize="16" Height="39" Width="78" RenderTransformOrigin="0.236,0.695" Grid.Row="2"/>
+        <TextBox Text="{Binding Value, ElementName=sliderDexterity, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" HorizontalAlignment="Left" TextAlignment="Right" Grid.Row="2" VerticalAlignment="Center" Width="32" RenderTransformOrigin="0.587,0.643" Height="18" Margin="548,0,0,0"/>
+
+        <Slider x:Name="sliderConstitution" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="108,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="418" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True"/>
+        <Label Grid.Column="1" Content="Constitution:" HorizontalAlignment="Left" Margin="6,0,0,0" VerticalAlignment="Center" FontSize="16" Height="39" Width="99" RenderTransformOrigin="0.236,0.695" Grid.Row="3"/>
+        <TextBox Text="{Binding Value, ElementName=sliderConstitution, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" HorizontalAlignment="Left" TextAlignment="Right" Grid.Row="3" VerticalAlignment="Center" Width="32" RenderTransformOrigin="0.587,0.643" Height="18" Margin="548,0,0,0"/>
+
+        <Slider x:Name="sliderIntellisence" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="108,0,0,0" Grid.Row="4" VerticalAlignment="Center" Width="418" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True"/>
+        <Label Grid.Column="1" Content="Intellisence:" HorizontalAlignment="Left" Margin="6,0,0,0" VerticalAlignment="Center" FontSize="16" Height="39" Width="99" RenderTransformOrigin="0.236,0.695" Grid.Row="4"/>
+        <TextBox Text="{Binding Value, ElementName=sliderIntellisence, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" HorizontalAlignment="Left" TextAlignment="Right" Grid.Row="4" VerticalAlignment="Center" Width="32" RenderTransformOrigin="0.587,0.643" Height="18" Margin="548,0,0,0"/>
+
+        <ProgressBar x:Name="ProgressBarExp" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="50,10,0,0" Grid.Row="5" VerticalAlignment="Top" Width="264"/>
+        <Label Grid.Column="1" Content="Exp:" HorizontalAlignment="Left" Margin="19,8,0,0" Grid.Row="5" VerticalAlignment="Top"/>
+        <Label Grid.Column="1" Content="{Binding Value, ElementName=ProgressBarExp, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="107,9,0,0" Grid.Row="5" VerticalAlignment="Top" Width="43"/>
+        <Label Grid.Column="1" Content="/" HorizontalAlignment="Left" Margin="150,8,0,0" Grid.Row="5" VerticalAlignment="Top"/>
+        <Label Grid.Column="1" Content="{Binding Maximum, ElementName=ProgressBarExp, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="165,8,0,0" Grid.Row="5" VerticalAlignment="Top" Width="113"/>
+        <Button x:Name="btnPlusExp100" Grid.Column="1" Content="+1000" HorizontalAlignment="Left" Margin="332,11,0,0" Grid.Row="5" VerticalAlignment="Top" Height="22" Width="52" Click="btnPlusExp100_Click"/>
+
+        <ProgressBar x:Name="ProgressBarHP" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="50,50,0,0" Grid.Row="5" VerticalAlignment="Top" Width="264"/>
+        <Label Grid.Column="1" Content="HP:" HorizontalAlignment="Left" Margin="20,48,0,0" Grid.Row="5" VerticalAlignment="Top"/>
+        <Label Grid.Column="1" Content="{Binding Value, ElementName=ProgressBarHP, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="93,47,0,0" Grid.Row="5" VerticalAlignment="Top" Width="57"/>
+        <Label Grid.Column="1" Content="/" HorizontalAlignment="Left" Margin="150,48,0,0" Grid.Row="5" VerticalAlignment="Top"/>
+        <Label Grid.Column="1" Content="{Binding Maximum, ElementName=ProgressBarHP, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="166,48,0,0" Grid.Row="5" VerticalAlignment="Top" Width="112"/>
+
+        <ProgressBar x:Name="ProgressBarMP" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="50,81,0,0" Grid.Row="5" VerticalAlignment="Top" Width="264"/>
+        <Label Grid.Column="1" Content="MP:" HorizontalAlignment="Left" Margin="20,79,0,0" Grid.Row="5" VerticalAlignment="Top"/>
+        <Label Grid.Column="1" Content="{Binding Value, ElementName=ProgressBarMP, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="93,78,0,0" Grid.Row="5" VerticalAlignment="Top" Width="57"/>
+        <Label Grid.Column="1" Content="/" HorizontalAlignment="Left" Margin="150,79,0,0" Grid.Row="5" VerticalAlignment="Top"/>
+        <Label Grid.Column="1" Content="{Binding Maximum, ElementName=ProgressBarMP, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="166,79,0,0" Grid.Row="5" VerticalAlignment="Top" Width="112"/>
+
+        <Label Grid.Column="1" Content="Damage:" HorizontalAlignment="Left" Height="29" Margin="20,113,0,0" Grid.Row="5" VerticalAlignment="Top" Width="66"/>
+        <Label Grid.Column="1" Content="mage Attack:" HorizontalAlignment="Left" Height="29" Margin="20,142,0,0" Grid.Row="5" VerticalAlignment="Top" Width="86"/>
+        <Label Grid.Column="1" Content="phys Def:" HorizontalAlignment="Left" Height="29" Margin="20,171,0,0" Grid.Row="5" VerticalAlignment="Top" Width="66"/>
+        <Label x:Name="labelDamage" Grid.Column="1" Content="0" HorizontalAlignment="Left" Margin="108,116,0,0" Grid.Row="5" VerticalAlignment="Top" RenderTransformOrigin="0.526,0.617" Width="30"/>
+        <Label x:Name="labelMA" Grid.Column="1" Content="0" HorizontalAlignment="Left" Margin="108,144,0,0" Grid.Row="5" VerticalAlignment="Top" RenderTransformOrigin="0.526,0.617" Width="30"/>
+        <Label x:Name="labelPhysDef" Grid.Column="1" Content="0" HorizontalAlignment="Left" Margin="108,171,0,0" Grid.Row="5" VerticalAlignment="Top" RenderTransformOrigin="0.526,0.617" Width="30"/>
+        <Label Grid.Column="1" Content="LVL:" HorizontalAlignment="Left" Height="29" Margin="169,113,0,0" Grid.Row="5" VerticalAlignment="Top" Width="66"/>
+        <Label Grid.Column="1" Content="Points:" HorizontalAlignment="Left" Height="29" Margin="169,139,0,0" Grid.Row="5" VerticalAlignment="Top" Width="66"/>
+        <Label x:Name="labelLVL" Grid.Column="1" Content="0" HorizontalAlignment="Left" Margin="222,113,0,0" Grid.Row="5" VerticalAlignment="Top" RenderTransformOrigin="0.526,0.617" Width="30"/>
+        <Label x:Name="labelPoits" Grid.Column="1" Content="0" HorizontalAlignment="Left" Margin="222,139,0,0" Grid.Row="5" VerticalAlignment="Top" RenderTransformOrigin="0.526,0.617" Width="30"/>
+        <Button x:Name="btnPlusExp10000" Grid.Column="1" Content="+10000" HorizontalAlignment="Left" Margin="401,12,0,0" Grid.Row="5" VerticalAlignment="Top" Height="22" Width="52" Click="btnPlusExp10000_Click"/>
+        <Button x:Name="btnPlusExp100000" Grid.Column="1" Content="+100000" HorizontalAlignment="Left" Margin="474,12,0,0" Grid.Row="5" VerticalAlignment="Top" Height="22" Width="52" Click="btnPlusExp100000_Click"/>
+
+    </Grid>
+</Window>
