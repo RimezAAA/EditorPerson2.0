@@ -20,9 +20,11 @@ namespace EditorPerson
     public partial class WindowCreateRogue : Window
     {
         Character character;
+        MainWindow mainWindow;
         
         public WindowCreateRogue(MainWindow win, bool saveOrCreate)
         {
+            mainWindow = win;
             InitializeComponent();
             if (saveOrCreate)
             {
@@ -48,7 +50,7 @@ namespace EditorPerson
             }
             else
             {
-                Character ch = (Character)win.listViewCharacters.SelectedItem;
+                Character ch = (Character)win.listViewCharacters.SelectedItem;//selectedItem вызывается при выделении
                 character = MongoExamples.Find(ch.name);
                 SaveOrCreate.Visibility = Visibility.Collapsed;
                 foreach (var item in character.Items)
@@ -57,7 +59,6 @@ namespace EditorPerson
                 }
             }
             win.txtBoxName.Text = "";
-            
             Initialize();
             Change();
             CreateCharacters.CalcExp(this, character);
@@ -443,7 +444,7 @@ namespace EditorPerson
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            switch (itemListViev.SelectedItems[0].ToString())
+            switch (itemListViev.SelectedItem.ToString())
             {
                 case "Sword":
                     character.Items.Remove(Item.sword);
@@ -465,6 +466,7 @@ namespace EditorPerson
         private void SaveOrCreate_Click(object sender, RoutedEventArgs e)
         {
             MongoExamples.AddToDB(character);
+            MongoExamples.FindAll(mainWindow.listViewCharacters);
             this.Close();
         }
 

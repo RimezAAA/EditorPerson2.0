@@ -36,7 +36,6 @@
         </ComboBox>
         <Button x:Name="btnCreate" Grid.Column="1" Content="Create" HorizontalAlignment="Left" Margin="292,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="28" Width="60" Click="btnCreate_Click"/>
         <TextBox x:Name="txtBoxName" Grid.Column="1" HorizontalAlignment="Left" Margin="155,10,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="28" TextAlignment="Center"/>
-        <Button x:Name="btnRefresh" Grid.Column="1" Content="Refresh" HorizontalAlignment="Left" Margin="677,0,0,0" Grid.Row="2" VerticalAlignment="Center" RenderTransformOrigin="0.579,0.639" Height="31" Width="57" Click="btnRefresh_Click"/>
 
 
     </Grid>

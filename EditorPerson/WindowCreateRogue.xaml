@@ -78,7 +78,7 @@
         <ListView x:Name="itemListViev" Grid.Column="1" Grid.Row="4" Margin="388,16,54,95" Grid.RowSpan="2">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Name" Width="189"/>
+                    <GridViewColumn Header="item Name" Width="189"/>
                 </GridView>
             </ListView.View>
         </ListView>

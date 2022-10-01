@@ -38,11 +38,6 @@ namespace EditorPerson
                 MessageBox.Show("Заполните имя", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
-        private void btnRefresh_Click(object sender, RoutedEventArgs e)
-        {
-            MongoExamples.FindAll(listViewCharacters);
-        }
-
         private void listViewCharacters_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             WindowCreateRogue windowCreateRogue = new WindowCreateRogue(this, false);
