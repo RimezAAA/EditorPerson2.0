@@ -74,7 +74,7 @@ namespace EditorPerson
         public int Exp { get; set; }
         public int Points { get; set; }
         [BsonIgnoreIfNull]
-        List<Item> Items { get; set; }
+        public List<Item> Items { get; set; }
 
         public Character(int hp, double mannaPoint, double physicalDef, int magicalAttack, int strength, int dexterity, int constitution, int intellisence, int damage)
         {
@@ -88,6 +88,7 @@ namespace EditorPerson
             this.dexterity = dexterity;
             this.constitution = constitution;
             this.intellisence = intellisence;
+            Items = new List<Item>();
         }
 
         public void AddItem(Item item)

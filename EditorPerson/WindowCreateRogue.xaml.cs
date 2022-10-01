@@ -21,9 +21,27 @@ namespace EditorPerson
     {
         Character character;
         
-        public WindowCreateRogue()
+        public WindowCreateRogue(MainWindow win)
         {
-            character = new Rogue();
+            switch (win.selectCharcter.Text)
+            {
+                case "Rogue": 
+                    character = new Rogue();
+                    character.type = "Rogue";
+                    character.name = win.txtBoxName.Text;
+                    break;
+                case "Warrior":
+                    character = new Warrior();
+                    character.type = "Warrior";
+                    character.name = win.txtBoxName.Text;
+                    break;
+                case "Wizard":
+                    character = new Wizard();
+                    character.type = "Wizard";
+                    character.name = win.txtBoxName.Text;
+                    break;
+            }
+            win.txtBoxName.Text = "";
             InitializeComponent();
             Initialize();
             Change();
@@ -33,14 +51,27 @@ namespace EditorPerson
 
         public void Initialize()
         {
-            sliderStrength.Minimum = Rogue.characteristics.MinStrenght;
-            sliderStrength.Maximum = Rogue.characteristics.MaxStrenght;
-            sliderDexterity.Minimum = Rogue.characteristics.MinDexterity;
-            sliderDexterity.Maximum = Rogue.characteristics.MaxDexterity;
-            sliderConstitution.Minimum = Rogue.characteristics.MinConstitution;
-            sliderConstitution.Maximum = Rogue.characteristics.MaxConstitution;
-            sliderIntellisence.Minimum = Rogue.characteristics.MinIntellisence;
-            sliderIntellisence.Maximum = Rogue.characteristics.MaxIntellisence;
+            switch (character.type)
+            {
+                case "Rogue":
+                    txtBoxStrength.Text = Rogue.characteristics.MinStrenght.ToString();
+                    txtBoxDexterity.Text = Rogue.characteristics.MinDexterity.ToString();
+                    txtBoxConstitution.Text = Rogue.characteristics.MinConstitution.ToString();
+                    txtBoxIntellisense.Text = Rogue.characteristics.MinIntellisence.ToString();
+                    break;
+                case "Warrior":
+                    txtBoxStrength.Text = Warrior.characteristics.MinStrenght.ToString();
+                    txtBoxDexterity.Text = Warrior.characteristics.MinDexterity.ToString();
+                    txtBoxConstitution.Text = Warrior.characteristics.MinConstitution.ToString();
+                    txtBoxIntellisense.Text = Warrior.characteristics.MinIntellisence.ToString();
+                    break;
+                case "Wizard":
+                    txtBoxStrength.Text = Wizard.characteristics.MinStrenght.ToString();
+                    txtBoxDexterity.Text = Wizard.characteristics.MinDexterity.ToString();
+                    txtBoxConstitution.Text = Wizard.characteristics.MinConstitution.ToString();
+                    txtBoxIntellisense.Text = Wizard.characteristics.MinIntellisence.ToString();
+                    break;
+            }
         }
         
         public void Change()
@@ -66,11 +97,370 @@ namespace EditorPerson
             CreateCharacters.CalcLVL(this, character);
         }
 
-        private void sliderStrength_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (character.Points > 0)
             {
-                
+                switch (character.type)
+                {
+                    case "Rogue":
+                        if (int.Parse(txtBoxStrength.Text) + 1 <= Rogue.characteristics.MaxStrenght)
+                        {
+                            txtBoxStrength.Text = (int.Parse(txtBoxStrength.Text) + 1).ToString();
+                            --character.Points;
+                            character.strength = int.Parse(txtBoxStrength.Text);
+                            character = new Rogue(character);
+                            CreateCharacters.Change(this, character);
+                        }
+                        break;
+                    case "Warrior":
+                        if (int.Parse(txtBoxStrength.Text) + 1 <= Warrior.characteristics.MaxStrenght)
+                        {
+                            txtBoxStrength.Text = (int.Parse(txtBoxStrength.Text) + 1).ToString();
+                            --character.Points;
+                            character.strength = int.Parse(txtBoxStrength.Text);
+                            character = new Warrior(character);
+                            CreateCharacters.Change(this, character);
+                        }
+                        break;
+                    case "Wizard":
+                        if (int.Parse(txtBoxStrength.Text) + 1 <= Wizard.characteristics.MaxStrenght)
+                        {
+                            txtBoxStrength.Text = (int.Parse(txtBoxStrength.Text) + 1).ToString();
+                            --character.Points;
+                            character.strength = int.Parse(txtBoxStrength.Text);
+                            character = new Wizard(character);
+                            CreateCharacters.Change(this, character);
+                        }
+                        break;
+                }
+                labelPoits.Content = character.Points;
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            switch (character.type)
+            {
+                case "Rogue":
+                    if (int.Parse(txtBoxStrength.Text) - 1 >= Rogue.characteristics.MinStrenght)
+                    {
+                        txtBoxStrength.Text = (int.Parse(txtBoxStrength.Text) - 1).ToString();
+                        ++character.Points;
+                        character.strength = int.Parse(txtBoxStrength.Text);
+                        character = new Rogue(character);
+                        CreateCharacters.Change(this, character);
+                    }
+                    break;
+                case "Warrior":
+                    if (int.Parse(txtBoxStrength.Text) - 1 >= Warrior.characteristics.MinStrenght)
+                    {
+                        txtBoxStrength.Text = (int.Parse(txtBoxStrength.Text) - 1).ToString();
+                        ++character.Points;
+                        character.strength = int.Parse(txtBoxStrength.Text);
+                        character = new Warrior(character);
+                        CreateCharacters.Change(this, character);
+                    }
+                    break;
+                case "Wizard":
+                    if (int.Parse(txtBoxStrength.Text) - 1 >= Wizard.characteristics.MinStrenght)
+                    {
+                        txtBoxStrength.Text = (int.Parse(txtBoxStrength.Text) - 1).ToString();
+                        ++character.Points;
+                        character.strength = int.Parse(txtBoxStrength.Text);
+                        character = new Wizard(character);
+                        CreateCharacters.Change(this, character);
+                    }
+                    break;
+            }
+            labelPoits.Content = character.Points;
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            if (character.Points > 0)
+            {
+                switch (character.type)
+                {
+                    case "Rogue":
+                        if (int.Parse(txtBoxDexterity.Text) + 1 <= Rogue.characteristics.MaxDexterity)
+                        {
+                            txtBoxDexterity.Text = (int.Parse(txtBoxDexterity.Text) + 1).ToString();
+                            --character.Points;
+                            character.dexterity = int.Parse(txtBoxDexterity.Text);
+                            character = new Rogue(character);
+                            CreateCharacters.Change(this, character);
+                        }
+                        break;
+                    case "Warrior":
+                        if (int.Parse(txtBoxDexterity.Text) + 1 <= Warrior.characteristics.MaxDexterity)
+                        {
+                            txtBoxDexterity.Text = (int.Parse(txtBoxDexterity.Text) + 1).ToString();
+                            --character.Points;
+                            character.dexterity = int.Parse(txtBoxDexterity.Text);
+                            character = new Warrior(character);
+                            CreateCharacters.Change(this, character);
+                        }
+                        break;
+                    case "Wizard":
+                        if (int.Parse(txtBoxDexterity.Text) + 1 <= Wizard.characteristics.MaxDexterity)
+                        {
+                            txtBoxDexterity.Text = (int.Parse(txtBoxDexterity.Text) + 1).ToString();
+                            --character.Points;
+                            character.dexterity = int.Parse(txtBoxDexterity.Text);
+                            character = new Wizard(character);
+                            CreateCharacters.Change(this, character);
+                        }
+                        break;
+                }
+                labelPoits.Content = character.Points;
+            }
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            switch (character.type)
+            {
+                case "Rogue":
+                    if (int.Parse(txtBoxDexterity.Text) - 1 >= Rogue.characteristics.MinDexterity)
+                    {
+                        txtBoxDexterity.Text = (int.Parse(txtBoxDexterity.Text) - 1).ToString();
+                        ++character.Points;
+                        character.dexterity = int.Parse(txtBoxDexterity.Text);
+                        character = new Rogue(character);
+                        CreateCharacters.Change(this, character);
+                    }
+                    break;
+                case "Warrior":
+                    if (int.Parse(txtBoxDexterity.Text) - 1 >= Warrior.characteristics.MinDexterity)
+                    {
+                        txtBoxDexterity.Text = (int.Parse(txtBoxDexterity.Text) - 1).ToString();
+                        ++character.Points;
+                        character.dexterity = int.Parse(txtBoxDexterity.Text);
+                        character = new Warrior(character);
+                        CreateCharacters.Change(this, character);
+                    }
+                    break;
+                case "Wizard":
+                    if (int.Parse(txtBoxDexterity.Text) - 1 >= Wizard.characteristics.MinDexterity)
+                    {
+                        txtBoxDexterity.Text = (int.Parse(txtBoxDexterity.Text) - 1).ToString();
+                        ++character.Points;
+                        character.dexterity = int.Parse(txtBoxDexterity.Text);
+                        character = new Wizard(character);
+                        CreateCharacters.Change(this, character);
+                    }
+                    break;
+            }
+            labelPoits.Content = character.Points;
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            if (character.Points > 0)
+            {
+                switch (character.type)
+                {
+                    case "Rogue":
+                        if (int.Parse(txtBoxConstitution.Text) + 1 <= Rogue.characteristics.MaxConstitution)
+                        {
+                            txtBoxConstitution.Text = (int.Parse(txtBoxConstitution.Text) + 1).ToString();
+                            --character.Points;
+                            character.constitution = int.Parse(txtBoxConstitution.Text);
+                            character = new Rogue(character);
+                            CreateCharacters.Change(this, character);
+                        }
+                        break;
+                    case "Warrior":
+                        if (int.Parse(txtBoxConstitution.Text) + 1 <= Warrior.characteristics.MaxConstitution)
+                        {
+                            txtBoxConstitution.Text = (int.Parse(txtBoxConstitution.Text) + 1).ToString();
+                            --character.Points;
+                            character.constitution = int.Parse(txtBoxConstitution.Text);
+                            character = new Warrior(character);
+                            CreateCharacters.Change(this, character);
+                        }
+                        break;
+                    case "Wizard":
+                        if (int.Parse(txtBoxConstitution.Text) + 1 <= Wizard.characteristics.MaxConstitution)
+                        {
+                            txtBoxConstitution.Text = (int.Parse(txtBoxConstitution.Text) + 1).ToString();
+                            --character.Points;
+                            character.constitution = int.Parse(txtBoxConstitution.Text);
+                            character = new Wizard(character);
+                            CreateCharacters.Change(this, character);
+                        }
+                        break;
+                }
+                labelPoits.Content = character.Points;
+            }
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            switch (character.type)
+            {
+                case "Rogue":
+                    if (int.Parse(txtBoxConstitution.Text) - 1 >= Rogue.characteristics.MinConstitution)
+                    {
+                        txtBoxConstitution.Text = (int.Parse(txtBoxConstitution.Text) - 1).ToString();
+                        ++character.Points;
+                        character.constitution = int.Parse(txtBoxConstitution.Text);
+                        character = new Rogue(character);
+                        CreateCharacters.Change(this, character);
+                    }
+                    break;
+                case "Warrior":
+                    if (int.Parse(txtBoxConstitution.Text) - 1 >= Warrior.characteristics.MinConstitution)
+                    {
+                        txtBoxConstitution.Text = (int.Parse(txtBoxConstitution.Text) - 1).ToString();
+                        ++character.Points;
+                        character.constitution = int.Parse(txtBoxConstitution.Text);
+                        character = new Warrior(character);
+                        CreateCharacters.Change(this, character);
+                    }
+                    break;
+                case "Wizard":
+                    if (int.Parse(txtBoxConstitution.Text) - 1 >= Wizard.characteristics.MinConstitution)
+                    {
+                        txtBoxConstitution.Text = (int.Parse(txtBoxConstitution.Text) - 1).ToString();
+                        ++character.Points;
+                        character.constitution = int.Parse(txtBoxConstitution.Text);
+                        character = new Wizard(character);
+                        CreateCharacters.Change(this, character);
+                    }
+                    break;
+            }
+            labelPoits.Content = character.Points;
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            if (character.Points > 0)
+            {
+                switch (character.type)
+                {
+                    case "Rogue":
+                        if (int.Parse(txtBoxIntellisense.Text) + 1 <= Rogue.characteristics.MaxIntellisence)
+                        {
+                            txtBoxIntellisense.Text = (int.Parse(txtBoxIntellisense.Text) + 1).ToString();
+                            --character.Points;
+                            character.intellisence = int.Parse(txtBoxIntellisense.Text);
+                            character = new Rogue(character);
+                            CreateCharacters.Change(this, character);
+                        }
+                        break;
+                    case "Warrior":
+                        if (int.Parse(txtBoxIntellisense.Text) + 1 <= Warrior.characteristics.MaxIntellisence)
+                        {
+                            txtBoxIntellisense.Text = (int.Parse(txtBoxIntellisense.Text) + 1).ToString();
+                            --character.Points;
+                            character.intellisence = int.Parse(txtBoxIntellisense.Text);
+                            character = new Warrior(character);
+                            CreateCharacters.Change(this, character);
+                        }
+                        break;
+                    case "Wizard":
+                        if (int.Parse(txtBoxIntellisense.Text) + 1 <= Wizard.characteristics.MaxIntellisence)
+                        {
+                            txtBoxIntellisense.Text = (int.Parse(txtBoxIntellisense.Text) + 1).ToString();
+                            --character.Points;
+                            character.intellisence = int.Parse(txtBoxIntellisense.Text);
+                            character = new Wizard(character);
+                            CreateCharacters.Change(this, character);
+                        }
+                        break;
+                }
+                labelPoits.Content = character.Points;
+            }
+        }
+
+        private void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+            switch (character.type)
+            {
+                case "Rogue":
+                    if (int.Parse(txtBoxIntellisense.Text) - 1 >= Rogue.characteristics.MinIntellisence)
+                    {
+                        txtBoxIntellisense.Text = (int.Parse(txtBoxIntellisense.Text) - 1).ToString();
+                        ++character.Points;
+                        character.intellisence = int.Parse(txtBoxIntellisense.Text);
+                        character = new Rogue(character);
+                        CreateCharacters.Change(this, character);
+                    }
+                    break;
+                case "Warrior":
+                    if (int.Parse(txtBoxIntellisense.Text) - 1 >= Warrior.characteristics.MinIntellisence)
+                    {
+                        txtBoxIntellisense.Text = (int.Parse(txtBoxIntellisense.Text) - 1).ToString();
+                        ++character.Points;
+                        character.intellisence = int.Parse(txtBoxIntellisense.Text);
+                        character = new Warrior(character);
+                        CreateCharacters.Change(this, character);
+                    }
+                    break;
+                case "Wizard":
+                    if (int.Parse(txtBoxIntellisense.Text) - 1 >= Wizard.characteristics.MinIntellisence)
+                    {
+                        txtBoxIntellisense.Text = (int.Parse(txtBoxIntellisense.Text) - 1).ToString();
+                        ++character.Points;
+                        character.intellisence = int.Parse(txtBoxIntellisense.Text);
+                        character = new Wizard(character);
+                        CreateCharacters.Change(this, character);
+                    }
+                    break;
+            }
+            labelPoits.Content = character.Points;
+        }
+
+        private void btnSword_Click(object sender, RoutedEventArgs e)
+        {
+            character.AddItem(Item.sword);
+            itemListViev.Items.Clear();
+            foreach (var item in character.Items)
+            {
+                itemListViev.Items.Add(item.ItemName);
+            }
+        }
+
+        private void btnMagicWand_Click(object sender, RoutedEventArgs e)
+        {
+            character.AddItem(Item.MagicWand);
+            itemListViev.Items.Clear();
+            foreach (var item in character.Items)
+            {
+                itemListViev.Items.Add(item.ItemName);
+            }
+        }
+
+        private void btnSpear_Click(object sender, RoutedEventArgs e)
+        {
+            character.AddItem(Item.Spear);
+            itemListViev.Items.Clear();
+            foreach (var item in character.Items)
+            {
+                itemListViev.Items.Add(item.ItemName);
+            }
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            switch (itemListViev.SelectedItems[0].ToString())
+            {
+                case "Sword":
+                    character.Items.Remove(Item.sword);
+                    break;
+                case "Magic Wand":
+                    character.Items.Remove(Item.MagicWand);
+                    break;
+                case "Spear":
+                    character.Items.Remove(Item.Spear);
+                    break;
+            }
+            itemListViev.Items.Clear();
+            foreach (var item in character.Items)
+            {
+                itemListViev.Items.Add(item.ItemName);
             }
         }
     }

@@ -31,6 +31,9 @@ namespace EditorPerson
                                                (rogue.strength * characteristics.OnePointStrenghtDamage) + (rogue.dexterity * characteristics.OnePointDexterityDamage))
         {
             this.type = "Rogue";
+            this.Exp = rogue.Exp;
+            this.LVL = rogue.LVL;
+            this.Points = rogue.Points;
             this.name = rogue.name;
             this._id = rogue._id;
         }

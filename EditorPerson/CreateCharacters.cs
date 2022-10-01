@@ -26,10 +26,7 @@ namespace EditorPerson
 
         static public void CalcExp(WindowCreateRogue window, Character character)
         {
-            if (character.LVL == 1)
-                window.ProgressBarExp.Maximum = character.LVL * LvlOneExp;
-            else
-                window.ProgressBarExp.Maximum += character.LVL * LvlOneExp;
+            window.ProgressBarExp.Maximum += character.LVL * LvlOneExp;
         }
 
         static public void CalcLVL(WindowCreateRogue window, Character character)

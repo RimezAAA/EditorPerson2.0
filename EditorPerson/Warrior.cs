@@ -31,6 +31,9 @@ namespace EditorPerson
                                                (warrior.strength * characteristics.OnePointStrenghtDamage) + (warrior.dexterity * characteristics.OnePointDexterityDamage))
         {
             this.type = "Warrior";
+            this.Exp = warrior.Exp;
+            this.LVL = warrior.LVL;
+            this.Points = warrior.Points;
             this.name = warrior.name;
             this._id = warrior._id;
         }

@@ -27,19 +27,14 @@ namespace EditorPerson
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-            switch (selectCharcter.Text)
+            if (txtBoxName.Text != "")
             {
-                case "Rogue":
-                    if (txtBoxName.Text != "")
-                    {
-                        WindowCreateRogue windowCreateRogue = new WindowCreateRogue();
-                        windowCreateRogue.Owner = this;
-                        windowCreateRogue.Show();
-                    }
-                    else
-                        MessageBox.Show("Заполните имя", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    break;
+                WindowCreateRogue windowCreateRogue = new WindowCreateRogue(this);
+                windowCreateRogue.Owner = this;
+                windowCreateRogue.Show();
             }
+            else
+                MessageBox.Show("Заполните имя", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

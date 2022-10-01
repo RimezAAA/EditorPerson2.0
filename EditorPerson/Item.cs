@@ -8,6 +8,9 @@ namespace EditorPerson
 {
     class Item
     {
+        public static Item sword = new Item("Sword");
+        public static Item MagicWand = new Item("Magic Wand");
+        public static Item Spear = new Item("Spear");
         public string ItemName { get; set; }
 
         public Item(string itemName)
