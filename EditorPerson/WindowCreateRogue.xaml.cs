@@ -21,28 +21,43 @@ namespace EditorPerson
     {
         Character character;
         
-        public WindowCreateRogue(MainWindow win)
+        public WindowCreateRogue(MainWindow win, bool saveOrCreate)
         {
-            switch (win.selectCharcter.Text)
+            InitializeComponent();
+            if (saveOrCreate)
             {
-                case "Rogue": 
-                    character = new Rogue();
-                    character.type = "Rogue";
-                    character.name = win.txtBoxName.Text;
-                    break;
-                case "Warrior":
-                    character = new Warrior();
-                    character.type = "Warrior";
-                    character.name = win.txtBoxName.Text;
-                    break;
-                case "Wizard":
-                    character = new Wizard();
-                    character.type = "Wizard";
-                    character.name = win.txtBoxName.Text;
-                    break;
+                switch (win.selectCharcter.Text)
+                {
+                    case "Rogue":
+                        character = new Rogue();
+                        character.type = "Rogue";
+                        character.name = win.txtBoxName.Text;
+                        break;
+                    case "Warrior":
+                        character = new Warrior();
+                        character.type = "Warrior";
+                        character.name = win.txtBoxName.Text;
+                        break;
+                    case "Wizard":
+                        character = new Wizard();
+                        character.type = "Wizard";
+                        character.name = win.txtBoxName.Text;
+                        break;
+                }
+                btnSave.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                Character ch = (Character)win.listViewCharacters.SelectedItem;
+                character = MongoExamples.Find(ch.name);
+                SaveOrCreate.Visibility = Visibility.Collapsed;
+                foreach (var item in character.Items)
+                {
+                    itemListViev.Items.Add(item.ItemName);
+                }
             }
             win.txtBoxName.Text = "";
-            InitializeComponent();
+            
             Initialize();
             Change();
             CreateCharacters.CalcExp(this, character);
@@ -51,27 +66,10 @@ namespace EditorPerson
 
         public void Initialize()
         {
-            switch (character.type)
-            {
-                case "Rogue":
-                    txtBoxStrength.Text = Rogue.characteristics.MinStrenght.ToString();
-                    txtBoxDexterity.Text = Rogue.characteristics.MinDexterity.ToString();
-                    txtBoxConstitution.Text = Rogue.characteristics.MinConstitution.ToString();
-                    txtBoxIntellisense.Text = Rogue.characteristics.MinIntellisence.ToString();
-                    break;
-                case "Warrior":
-                    txtBoxStrength.Text = Warrior.characteristics.MinStrenght.ToString();
-                    txtBoxDexterity.Text = Warrior.characteristics.MinDexterity.ToString();
-                    txtBoxConstitution.Text = Warrior.characteristics.MinConstitution.ToString();
-                    txtBoxIntellisense.Text = Warrior.characteristics.MinIntellisence.ToString();
-                    break;
-                case "Wizard":
-                    txtBoxStrength.Text = Wizard.characteristics.MinStrenght.ToString();
-                    txtBoxDexterity.Text = Wizard.characteristics.MinDexterity.ToString();
-                    txtBoxConstitution.Text = Wizard.characteristics.MinConstitution.ToString();
-                    txtBoxIntellisense.Text = Wizard.characteristics.MinIntellisence.ToString();
-                    break;
-            }
+            txtBoxStrength.Text = character.strength.ToString();
+            txtBoxDexterity.Text = character.dexterity.ToString();
+            txtBoxConstitution.Text = character.constitution.ToString();
+            txtBoxIntellisense.Text = character.intellisence.ToString();
         }
         
         public void Change()
@@ -462,6 +460,18 @@ namespace EditorPerson
             {
                 itemListViev.Items.Add(item.ItemName);
             }
+        }
+
+        private void SaveOrCreate_Click(object sender, RoutedEventArgs e)
+        {
+            MongoExamples.AddToDB(character);
+            this.Close();
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            MongoExamples.ReplaceByName(character.name, character);
+            this.Close();
         }
     }
 }

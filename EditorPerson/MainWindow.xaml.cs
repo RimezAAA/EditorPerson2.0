@@ -23,18 +23,31 @@ namespace EditorPerson
         public MainWindow()
         {
             InitializeComponent();
+            MongoExamples.FindAll(listViewCharacters);
         }
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
             if (txtBoxName.Text != "")
             {
-                WindowCreateRogue windowCreateRogue = new WindowCreateRogue(this);
+                WindowCreateRogue windowCreateRogue = new WindowCreateRogue(this, true);
                 windowCreateRogue.Owner = this;
                 windowCreateRogue.Show();
             }
             else
                 MessageBox.Show("Заполните имя", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        private void btnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            MongoExamples.FindAll(listViewCharacters);
+        }
+
+        private void listViewCharacters_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            WindowCreateRogue windowCreateRogue = new WindowCreateRogue(this, false);
+            windowCreateRogue.Owner = this;
+            windowCreateRogue.Show();
         }
     }
 }
