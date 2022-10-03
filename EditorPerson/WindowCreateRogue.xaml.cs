@@ -52,7 +52,7 @@ namespace EditorPerson
             {
                 Character ch = (Character)win.listViewCharacters.SelectedItem;//selectedItem вызывается при выделении
                 character = MongoExamples.Find(ch.name);
-                SaveOrCreate.Visibility = Visibility.Collapsed;
+                btnCreate.Visibility = Visibility.Collapsed;
                 foreach (var item in character.Items)
                 {
                     itemListViev.Items.Add(item.ItemName);
@@ -463,7 +463,7 @@ namespace EditorPerson
             }
         }
 
-        private void SaveOrCreate_Click(object sender, RoutedEventArgs e)
+        private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
             MongoExamples.AddToDB(character);
             MongoExamples.FindAll(mainWindow.listViewCharacters);
