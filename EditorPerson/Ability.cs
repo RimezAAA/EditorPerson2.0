@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace EditorPerson
 {
-    internal class Ability
+    class Ability
     {
+        public string Name { get; set; }
+
+        public Ability(string name)
+        {
+            Name = name;
+        }
     }
 }

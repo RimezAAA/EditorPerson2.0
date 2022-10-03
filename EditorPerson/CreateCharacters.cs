@@ -34,6 +34,10 @@ namespace EditorPerson
             while (window.ProgressBarExp.Maximum <= character.Exp)
             {
                 ++character.LVL;
+                if (character.LVL % 3 == 0)
+                {
+
+                }
                 character.Points += 5;
                 window.labelPoits.Content = character.Points;
                 window.labelLVL.Content = character.LVL;
