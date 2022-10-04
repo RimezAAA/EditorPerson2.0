@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EditorPerson.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,9 +31,9 @@ namespace EditorPerson
         {
             if (txtBoxName.Text != "")
             {
-                WindowCreateRogue windowCreateRogue = new WindowCreateRogue(this, true);
-                windowCreateRogue.Owner = this;
-                windowCreateRogue.Show();
+                WindowCreateCharacter windowCreate = new WindowCreateCharacter(this);
+                windowCreate.Owner = this;
+                windowCreate.Show();
             }
             else
                 MessageBox.Show("Заполните имя", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -40,9 +41,9 @@ namespace EditorPerson
 
         private void listViewCharacters_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            WindowCreateRogue windowCreateRogue = new WindowCreateRogue(this, false);
-            windowCreateRogue.Owner = this;
-            windowCreateRogue.Show();
+            WindowSaveCharacter windowSave = new WindowSaveCharacter(this);
+            windowSave.Owner = this;
+            windowSave.Show();
         }
     }
 }

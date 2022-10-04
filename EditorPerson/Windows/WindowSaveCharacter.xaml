@@ -1,11 +1,11 @@
-﻿<Window x:Class="EditorPerson.WindowCreateRogue"
+﻿<Window x:Class="EditorPerson.Windows.WindowSaveCharacter"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:EditorPerson"
+        xmlns:local="clr-namespace:EditorPerson.Windows"
         mc:Ignorable="d"
-        Title="WindowCreateRogue" Height="450" Width="658">
+        Title="WindowSaveCharacter" Height="450" Width="658">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="11*"/>
@@ -72,7 +72,7 @@
         <Button Grid.Column="1" Content=" - " HorizontalAlignment="Left" Margin="145,0,0,0" Grid.Row="4" VerticalAlignment="Center" Click="Button_Click_7"/>
         <Button Grid.Column="1" Content="+" HorizontalAlignment="Left" Margin="202,0,0,0" Grid.Row="4" VerticalAlignment="Center" Click="Button_Click_6"/>
         <Rectangle Grid.Column="1" HorizontalAlignment="Left" Height="207" Margin="388,13,0,0" Grid.Row="4" Stroke="#FF716B6B" VerticalAlignment="Top" Width="189" OpacityMask="#FF636161" Fill="#FF635F8C" Grid.RowSpan="2"/>
-        <Button x:Name="btnSword" Grid.Column="1" Content="Sword" HorizontalAlignment="Left" Margin="389,126,0,0" Grid.Row="5" VerticalAlignment="Top" Click="btnSword_Click"/>
+        <!--<Button x:Name="btnSword" Grid.Column="1" Content="Sword" HorizontalAlignment="Left" Margin="389,126,0,0" Grid.Row="5" VerticalAlignment="Top" Click="btnSword_Click"/>
         <Button x:Name="btnMagicWand" Grid.Column="1" Content="Magic Wand" HorizontalAlignment="Left" Margin="431,126,0,0" Grid.Row="5" VerticalAlignment="Top" Click="btnMagicWand_Click"/>
         <Button x:Name="btnSpear" Grid.Column="1" Content="Spear" HorizontalAlignment="Left" Margin="506,126,0,0" Grid.Row="5" VerticalAlignment="Top" Click="btnSpear_Click"/>
         <ListView x:Name="itemListViev" Grid.Column="1" Grid.Row="4" Margin="388,16,54,95" Grid.RowSpan="2">
@@ -82,9 +82,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="btnDelete" Grid.Column="1" Content="X" HorizontalAlignment="Left" Margin="548,126,0,0" Grid.Row="5" VerticalAlignment="Top" Click="btnDelete_Click"/>
-        <Button x:Name="btnCreate" Grid.Column="1" Content="Create" HorizontalAlignment="Left" Margin="2,178,0,0" Grid.Row="5" VerticalAlignment="Top" Click="btnCreate_Click"/>
-        <Button x:Name="btnSave" Grid.Column="1" Content="Save" HorizontalAlignment="Left" Margin="49,178,0,0" Grid.Row="5" VerticalAlignment="Top" Click="btnSave_Click"/>
-
+        <Button x:Name="btnDelete" Grid.Column="1" Content="X" HorizontalAlignment="Left" Margin="548,126,0,0" Grid.Row="5" VerticalAlignment="Top" Click="btnDelete_Click"/>-->
+        <Button x:Name="btnSave" Grid.Column="1" Content="Save" HorizontalAlignment="Left" Margin="2,178,0,0" Grid.Row="5" VerticalAlignment="Top" Click="btnSave_Click"/>
     </Grid>
 </Window>

@@ -12,59 +12,45 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace EditorPerson
+namespace EditorPerson.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для WindowCreateRogue.xaml
+    /// Логика взаимодействия для WindowCreateCharacter.xaml
     /// </summary>
-    public partial class WindowCreateRogue : Window
+    public partial class WindowCreateCharacter : Window
     {
         Character character;
         MainWindow mainWindow;
-        
-        public WindowCreateRogue(MainWindow win, bool saveOrCreate)
+        const int LvlOneExp = 1000;
+        public WindowCreateCharacter(MainWindow win)
         {
-            mainWindow = win;
             InitializeComponent();
-            if (saveOrCreate)
+            mainWindow = win;
+            switch (win.selectCharcter.Text)
             {
-                switch (win.selectCharcter.Text)
-                {
-                    case "Rogue":
-                        character = new Rogue();
-                        character.type = "Rogue";
-                        character.name = win.txtBoxName.Text;
-                        break;
-                    case "Warrior":
-                        character = new Warrior();
-                        character.type = "Warrior";
-                        character.name = win.txtBoxName.Text;
-                        break;
-                    case "Wizard":
-                        character = new Wizard();
-                        character.type = "Wizard";
-                        character.name = win.txtBoxName.Text;
-                        break;
-                }
-                btnSave.Visibility = Visibility.Collapsed;
+                case "Rogue":
+                    character = new Rogue();
+                    character.type = "Rogue";
+                    character.name = win.txtBoxName.Text;
+                    break;
+                case "Warrior":
+                    character = new Warrior();
+                    character.type = "Warrior";
+                    character.name = win.txtBoxName.Text;
+                    break;
+                case "Wizard":
+                    character = new Wizard();
+                    character.type = "Wizard";
+                    character.name = win.txtBoxName.Text;
+                    break;
             }
-            else
-            {
-                Character ch = (Character)win.listViewCharacters.SelectedItem;//selectedItem вызывается при выделении
-                character = MongoExamples.Find(ch.name);
-                btnCreate.Visibility = Visibility.Collapsed;
-                foreach (var item in character.Items)
-                {
-                    itemListViev.Items.Add(item.ItemName);
-                }
-            }
-            win.txtBoxName.Text = "";
+            mainWindow.txtBoxName.Text = "";
             Initialize();
             Change();
-            CreateCharacters.CalcExp(this, character);
+            CalcExp();
             ProgressBarExp.Value = character.Exp;
-        }
 
+        }
         public void Initialize()
         {
             txtBoxStrength.Text = character.strength.ToString();
@@ -72,28 +58,57 @@ namespace EditorPerson
             txtBoxConstitution.Text = character.constitution.ToString();
             txtBoxIntellisense.Text = character.intellisence.ToString();
         }
-        
+
         public void Change()
         {
-            CreateCharacters.Change(this, character);
+            ProgressBarHP.Maximum = character.hp;
+            ProgressBarHP.Value = character.hp;
+            ProgressBarMP.Maximum = character.mannaPoint;
+            ProgressBarMP.Value = character.mannaPoint;
+            labelDamage.Content = character.damage;
+            labelMA.Content = character.magicalAttack;
+            labelPhysDef.Content = character.physicalDef;
+            labelLVL.Content = character.LVL;
+            labelPoits.Content = character.Points;
+        }
+        public void CalcExp()
+        {
+            ProgressBarExp.Maximum += character.LVL * LvlOneExp;
         }
 
+        public void CalcLVL()
+        {
+            while (ProgressBarExp.Maximum <= character.Exp)
+            {
+                ++character.LVL;
+                if (character.LVL % 3 == 0)
+                {
+
+                }
+                character.Points += 5;
+                labelPoits.Content = character.Points;
+                labelLVL.Content = character.LVL;
+                character.Exp -= Convert.ToInt32(ProgressBarExp.Maximum);
+                CalcExp();
+            }
+            ProgressBarExp.Value = character.Exp;
+        }
         private void btnPlusExp100_Click(object sender, RoutedEventArgs e)
         {
             character.Exp += 1000;
-            CreateCharacters.CalcLVL(this, character);
+            CalcLVL();
         }
 
         private void btnPlusExp10000_Click(object sender, RoutedEventArgs e)
         {
             character.Exp += 10000;
-            CreateCharacters.CalcLVL(this, character);
+            CalcLVL();
         }
 
         private void btnPlusExp100000_Click(object sender, RoutedEventArgs e)
         {
             character.Exp += 100000;
-            CreateCharacters.CalcLVL(this, character);
+            CalcLVL();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -109,7 +124,7 @@ namespace EditorPerson
                             --character.Points;
                             character.strength = int.Parse(txtBoxStrength.Text);
                             character = new Rogue(character);
-                            CreateCharacters.Change(this, character);
+                            Change();
                         }
                         break;
                     case "Warrior":
@@ -119,7 +134,7 @@ namespace EditorPerson
                             --character.Points;
                             character.strength = int.Parse(txtBoxStrength.Text);
                             character = new Warrior(character);
-                            CreateCharacters.Change(this, character);
+                            Change();
                         }
                         break;
                     case "Wizard":
@@ -129,7 +144,7 @@ namespace EditorPerson
                             --character.Points;
                             character.strength = int.Parse(txtBoxStrength.Text);
                             character = new Wizard(character);
-                            CreateCharacters.Change(this, character);
+                            Change();
                         }
                         break;
                 }
@@ -148,7 +163,7 @@ namespace EditorPerson
                         ++character.Points;
                         character.strength = int.Parse(txtBoxStrength.Text);
                         character = new Rogue(character);
-                        CreateCharacters.Change(this, character);
+                        Change();
                     }
                     break;
                 case "Warrior":
@@ -158,7 +173,7 @@ namespace EditorPerson
                         ++character.Points;
                         character.strength = int.Parse(txtBoxStrength.Text);
                         character = new Warrior(character);
-                        CreateCharacters.Change(this, character);
+                        Change();
                     }
                     break;
                 case "Wizard":
@@ -168,7 +183,7 @@ namespace EditorPerson
                         ++character.Points;
                         character.strength = int.Parse(txtBoxStrength.Text);
                         character = new Wizard(character);
-                        CreateCharacters.Change(this, character);
+                        Change();
                     }
                     break;
             }
@@ -188,7 +203,7 @@ namespace EditorPerson
                             --character.Points;
                             character.dexterity = int.Parse(txtBoxDexterity.Text);
                             character = new Rogue(character);
-                            CreateCharacters.Change(this, character);
+                            Change();
                         }
                         break;
                     case "Warrior":
@@ -198,7 +213,7 @@ namespace EditorPerson
                             --character.Points;
                             character.dexterity = int.Parse(txtBoxDexterity.Text);
                             character = new Warrior(character);
-                            CreateCharacters.Change(this, character);
+                            Change();
                         }
                         break;
                     case "Wizard":
@@ -208,7 +223,7 @@ namespace EditorPerson
                             --character.Points;
                             character.dexterity = int.Parse(txtBoxDexterity.Text);
                             character = new Wizard(character);
-                            CreateCharacters.Change(this, character);
+                            Change();
                         }
                         break;
                 }
@@ -227,7 +242,7 @@ namespace EditorPerson
                         ++character.Points;
                         character.dexterity = int.Parse(txtBoxDexterity.Text);
                         character = new Rogue(character);
-                        CreateCharacters.Change(this, character);
+                        Change();
                     }
                     break;
                 case "Warrior":
@@ -237,7 +252,7 @@ namespace EditorPerson
                         ++character.Points;
                         character.dexterity = int.Parse(txtBoxDexterity.Text);
                         character = new Warrior(character);
-                        CreateCharacters.Change(this, character);
+                        Change();
                     }
                     break;
                 case "Wizard":
@@ -247,7 +262,7 @@ namespace EditorPerson
                         ++character.Points;
                         character.dexterity = int.Parse(txtBoxDexterity.Text);
                         character = new Wizard(character);
-                        CreateCharacters.Change(this, character);
+                        Change();
                     }
                     break;
             }
@@ -267,7 +282,7 @@ namespace EditorPerson
                             --character.Points;
                             character.constitution = int.Parse(txtBoxConstitution.Text);
                             character = new Rogue(character);
-                            CreateCharacters.Change(this, character);
+                            Change();
                         }
                         break;
                     case "Warrior":
@@ -277,7 +292,7 @@ namespace EditorPerson
                             --character.Points;
                             character.constitution = int.Parse(txtBoxConstitution.Text);
                             character = new Warrior(character);
-                            CreateCharacters.Change(this, character);
+                            Change();
                         }
                         break;
                     case "Wizard":
@@ -287,7 +302,7 @@ namespace EditorPerson
                             --character.Points;
                             character.constitution = int.Parse(txtBoxConstitution.Text);
                             character = new Wizard(character);
-                            CreateCharacters.Change(this, character);
+                            Change();
                         }
                         break;
                 }
@@ -306,7 +321,7 @@ namespace EditorPerson
                         ++character.Points;
                         character.constitution = int.Parse(txtBoxConstitution.Text);
                         character = new Rogue(character);
-                        CreateCharacters.Change(this, character);
+                        Change();
                     }
                     break;
                 case "Warrior":
@@ -316,7 +331,7 @@ namespace EditorPerson
                         ++character.Points;
                         character.constitution = int.Parse(txtBoxConstitution.Text);
                         character = new Warrior(character);
-                        CreateCharacters.Change(this, character);
+                        Change();
                     }
                     break;
                 case "Wizard":
@@ -326,7 +341,7 @@ namespace EditorPerson
                         ++character.Points;
                         character.constitution = int.Parse(txtBoxConstitution.Text);
                         character = new Wizard(character);
-                        CreateCharacters.Change(this, character);
+                        Change();
                     }
                     break;
             }
@@ -346,7 +361,7 @@ namespace EditorPerson
                             --character.Points;
                             character.intellisence = int.Parse(txtBoxIntellisense.Text);
                             character = new Rogue(character);
-                            CreateCharacters.Change(this, character);
+                            Change();
                         }
                         break;
                     case "Warrior":
@@ -356,7 +371,7 @@ namespace EditorPerson
                             --character.Points;
                             character.intellisence = int.Parse(txtBoxIntellisense.Text);
                             character = new Warrior(character);
-                            CreateCharacters.Change(this, character);
+                            Change();
                         }
                         break;
                     case "Wizard":
@@ -366,7 +381,7 @@ namespace EditorPerson
                             --character.Points;
                             character.intellisence = int.Parse(txtBoxIntellisense.Text);
                             character = new Wizard(character);
-                            CreateCharacters.Change(this, character);
+                            Change();
                         }
                         break;
                 }
@@ -385,7 +400,7 @@ namespace EditorPerson
                         ++character.Points;
                         character.intellisence = int.Parse(txtBoxIntellisense.Text);
                         character = new Rogue(character);
-                        CreateCharacters.Change(this, character);
+                        Change();
                     }
                     break;
                 case "Warrior":
@@ -395,7 +410,7 @@ namespace EditorPerson
                         ++character.Points;
                         character.intellisence = int.Parse(txtBoxIntellisense.Text);
                         character = new Warrior(character);
-                        CreateCharacters.Change(this, character);
+                        Change();
                     }
                     break;
                 case "Wizard":
@@ -405,62 +420,11 @@ namespace EditorPerson
                         ++character.Points;
                         character.intellisence = int.Parse(txtBoxIntellisense.Text);
                         character = new Wizard(character);
-                        CreateCharacters.Change(this, character);
+                        Change();
                     }
                     break;
             }
             labelPoits.Content = character.Points;
-        }
-
-        private void btnSword_Click(object sender, RoutedEventArgs e)
-        {
-            character.AddItem(Item.sword);
-            itemListViev.Items.Clear();
-            foreach (var item in character.Items)
-            {
-                itemListViev.Items.Add(item.ItemName);
-            }
-        }
-
-        private void btnMagicWand_Click(object sender, RoutedEventArgs e)
-        {
-            character.AddItem(Item.MagicWand);
-            itemListViev.Items.Clear();
-            foreach (var item in character.Items)
-            {
-                itemListViev.Items.Add(item.ItemName);
-            }
-        }
-
-        private void btnSpear_Click(object sender, RoutedEventArgs e)
-        {
-            character.AddItem(Item.Spear);
-            itemListViev.Items.Clear();
-            foreach (var item in character.Items)
-            {
-                itemListViev.Items.Add(item.ItemName);
-            }
-        }
-
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
-        {
-            switch (itemListViev.SelectedItem.ToString())
-            {
-                case "Sword":
-                    character.Items.Remove(Item.sword);
-                    break;
-                case "Magic Wand":
-                    character.Items.Remove(Item.MagicWand);
-                    break;
-                case "Spear":
-                    character.Items.Remove(Item.Spear);
-                    break;
-            }
-            itemListViev.Items.Clear();
-            foreach (var item in character.Items)
-            {
-                itemListViev.Items.Add(item.ItemName);
-            }
         }
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
@@ -470,10 +434,5 @@ namespace EditorPerson
             this.Close();
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
-        {
-            MongoExamples.ReplaceByName(character.name, character);
-            this.Close();
-        }
     }
 }
