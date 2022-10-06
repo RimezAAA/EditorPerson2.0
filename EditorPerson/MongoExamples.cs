@@ -44,5 +44,14 @@ namespace EditorPerson
             var collection = database.GetCollection<Character>("Characters");
             collection.ReplaceOne(x => x.name == name, character);
         }
+
+        public static void Update(Character character)
+        {
+            var client = new MongoClient();
+            var database = client.GetDatabase("CharactersDataBaseArt");
+            var collection = database.GetCollection<Character>("Characters");
+            var update = Builders<Character>.Update.Set("Items", character.Items);
+            collection.UpdateMany(x => x.name == character.name, update);
+        }
     }
 }

@@ -81,5 +81,14 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <ListView x:Name="listViewInventar" Grid.Column="1" Grid.Row="3" Margin="420,50,10,182" Grid.RowSpan="3">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding ItemName}" Width="175"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="btnAddItem" Grid.Column="1" Content="Add" HorizontalAlignment="Left" Margin="420,32,0,0" Grid.Row="5" VerticalAlignment="Top" Click="btnAddItem_Click"/>
+        <Button x:Name="btnDeleteItem" Grid.Column="1" Content="Delete" HorizontalAlignment="Left" Margin="464,32,0,0" Grid.Row="5" VerticalAlignment="Top" Click="btnDeleteItem_Click"/>
     </Grid>
 </Window>

@@ -26,13 +26,14 @@ namespace EditorPerson.Windows
         {
             InitializeComponent();
             mainWindow = win;
-            character = (Character)win.listViewCharacters.SelectedItem;
+            character = MongoExamples.Find(((Character)win.listViewCharacters.SelectedItem).name);
             mainWindow.txtBoxName.Text = "";
             Initialize();
             Change();
             CalcExp();
             ProgressBarExp.Value = character.Exp;
             listViewItems.ItemsSource = ItemMaker.items;
+            listViewInventar.ItemsSource = character.Items;
         }
         public void Initialize()
         {
@@ -413,6 +414,32 @@ namespace EditorPerson.Windows
         {
             MongoExamples.ReplaceByName(character.name, character);
             this.Close();
+        }
+        private void btnAddItem_Click(object sender, RoutedEventArgs e)
+        {
+            var tmpItem = listViewItems.SelectedItem;
+            if (tmpItem != null)
+            {
+                if (((Item)tmpItem).Conditioin.ConditionCheck(character))
+                {
+                    character.AddItem((Item)tmpItem);
+                    listViewInventar.ItemsSource = null;
+                    listViewInventar.ItemsSource = character.Items;
+                    MongoExamples.Update(character);
+                }
+            }
+        }
+
+        private void btnDeleteItem_Click(object sender, RoutedEventArgs e)
+        {
+            var tmpItem = listViewInventar.SelectedItem;
+            if (tmpItem != null)
+            {
+                character.Items.Remove((Item)tmpItem);
+                listViewInventar.ItemsSource = null;
+                listViewInventar.ItemsSource = character.Items;
+                MongoExamples.Update(character);
+            }
         }
     }
 }
