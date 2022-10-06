@@ -442,8 +442,20 @@ namespace EditorPerson.Windows
                 if (((Item)tmpItem).Conditioin.ConditionCheck(character))
                 {
                     character.AddItem((Item)tmpItem);
+                    listViewInventar.ItemsSource = null;
                     listViewInventar.ItemsSource = character.Items;
                 }
+            }
+        }
+
+        private void btnDeleteItem_Click(object sender, RoutedEventArgs e)
+        {
+            var tmpItem = listViewInventar.SelectedItem;
+            if (tmpItem != null)
+            {
+                character.Items.Remove((Item)tmpItem);
+                listViewInventar.ItemsSource = null;
+                listViewInventar.ItemsSource = character.Items;
             }
         }
     }
