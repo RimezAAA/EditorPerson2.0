@@ -71,18 +71,24 @@
         <Button Grid.Column="1" Content="+" HorizontalAlignment="Left" Margin="202,0,0,0" Grid.Row="3" VerticalAlignment="Center" Click="Button_Click_4"/>
         <Button Grid.Column="1" Content=" - " HorizontalAlignment="Left" Margin="145,0,0,0" Grid.Row="4" VerticalAlignment="Center" Click="Button_Click_7"/>
         <Button Grid.Column="1" Content="+" HorizontalAlignment="Left" Margin="202,0,0,0" Grid.Row="4" VerticalAlignment="Center" Click="Button_Click_6"/>
-        <Rectangle Grid.Column="1" HorizontalAlignment="Left" Height="207" Margin="388,13,0,0" Grid.Row="4" Stroke="#FF716B6B" VerticalAlignment="Top" Width="189" OpacityMask="#FF636161" Fill="#FF635F8C" Grid.RowSpan="2"/>
-        <!--<Button x:Name="btnSword" Grid.Column="1" Content="Sword" HorizontalAlignment="Left" Margin="389,126,0,0" Grid.Row="5" VerticalAlignment="Top" Click="btnSword_Click"/>
-        <Button x:Name="btnMagicWand" Grid.Column="1" Content="Magic Wand" HorizontalAlignment="Left" Margin="431,126,0,0" Grid.Row="5" VerticalAlignment="Top" Click="btnMagicWand_Click"/>
-        <Button x:Name="btnSpear" Grid.Column="1" Content="Spear" HorizontalAlignment="Left" Margin="506,126,0,0" Grid.Row="5" VerticalAlignment="Top" Click="btnSpear_Click"/>
-        <ListView x:Name="itemListViev" Grid.Column="1" Grid.Row="4" Margin="388,16,54,95" Grid.RowSpan="2">
+
+        <Button x:Name="btnCreate" Grid.Column="1" Content="Create" HorizontalAlignment="Left" Margin="2,178,0,0" Grid.Row="5" VerticalAlignment="Top" Click="btnCreate_Click"/>
+        <ListView x:Name="listViewItems" Grid.Column="1" Grid.Row="5" Margin="420,59,10,3">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="item Name" Width="189"/>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding ItemName}" Width="110"/>
+                    <GridViewColumn Header="Cost" DisplayMemberBinding="{Binding Cost}" Width="40"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="btnDelete" Grid.Column="1" Content="X" HorizontalAlignment="Left" Margin="548,126,0,0" Grid.Row="5" VerticalAlignment="Top" Click="btnDelete_Click"/>-->
-        <Button x:Name="btnCreate" Grid.Column="1" Content="Create" HorizontalAlignment="Left" Margin="2,178,0,0" Grid.Row="5" VerticalAlignment="Top" Click="btnCreate_Click"/>
+        <ListView x:Name="listViewInventar" Grid.Column="1" Grid.Row="3" Margin="420,50,10,182" Grid.RowSpan="3">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding ItemName}" Width="175"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="btnAddItem" Grid.Column="1" Content="Add" HorizontalAlignment="Left" Margin="420,32,0,0" Grid.Row="5" VerticalAlignment="Top" Click="btnAddItem_Click"/>
+        <Button x:Name="btnDeleteItem" Grid.Column="1" Content="Delete" HorizontalAlignment="Left" Margin="464,32,0,0" Grid.Row="5" VerticalAlignment="Top"/>
     </Grid>
 </Window>

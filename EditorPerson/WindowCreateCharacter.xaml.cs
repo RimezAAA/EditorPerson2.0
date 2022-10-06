@@ -49,7 +49,7 @@ namespace EditorPerson.Windows
             Change();
             CalcExp();
             ProgressBarExp.Value = character.Exp;
-
+            listViewItems.ItemsSource = ItemMaker.items;
         }
         public void Initialize()
         {
@@ -434,5 +434,17 @@ namespace EditorPerson.Windows
             this.Close();
         }
 
+        private void btnAddItem_Click(object sender, RoutedEventArgs e)
+        {
+            var tmpItem = listViewItems.SelectedItem;
+            if (tmpItem != null)
+            {
+                if (((Item)tmpItem).Conditioin.ConditionCheck(character))
+                {
+                    character.AddItem((Item)tmpItem);
+                    listViewInventar.ItemsSource = character.Items;
+                }
+            }
+        }
     }
 }

@@ -26,30 +26,13 @@ namespace EditorPerson.Windows
         {
             InitializeComponent();
             mainWindow = win;
-            switch (win.selectCharcter.Text)
-            {
-                case "Rogue":
-                    character = new Rogue();
-                    character.type = "Rogue";
-                    character.name = win.txtBoxName.Text;
-                    break;
-                case "Warrior":
-                    character = new Warrior();
-                    character.type = "Warrior";
-                    character.name = win.txtBoxName.Text;
-                    break;
-                case "Wizard":
-                    character = new Wizard();
-                    character.type = "Wizard";
-                    character.name = win.txtBoxName.Text;
-                    break;
-            }
+            character = (Character)win.listViewCharacters.SelectedItem;
             mainWindow.txtBoxName.Text = "";
             Initialize();
             Change();
             CalcExp();
             ProgressBarExp.Value = character.Exp;
-
+            listViewItems.ItemsSource = ItemMaker.items;
         }
         public void Initialize()
         {
