@@ -422,10 +422,15 @@ namespace EditorPerson.Windows
             {
                 if (((Item)tmpItem).Conditioin.ConditionCheck(character))
                 {
+                    var a = character.Items.Find(x => x.ItemName == ((Item)tmpItem).ItemName);
+                    if (a == null)
+                        character = ((Item)tmpItem).Buf.BufCharacter(character);
                     character.AddItem((Item)tmpItem);
                     listViewInventar.ItemsSource = null;
                     listViewInventar.ItemsSource = character.Items;
                     MongoExamples.Update(character);
+                    Initialize();
+                    Change();
                 }
             }
         }
@@ -435,10 +440,13 @@ namespace EditorPerson.Windows
             var tmpItem = listViewInventar.SelectedItem;
             if (tmpItem != null)
             {
+                character = ((Item)tmpItem).Buf.UnBufCharacter(character);
                 character.Items.Remove((Item)tmpItem);
                 listViewInventar.ItemsSource = null;
                 listViewInventar.ItemsSource = character.Items;
                 MongoExamples.Update(character);
+                Initialize();
+                Change();
             }
         }
     }
