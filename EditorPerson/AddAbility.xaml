@@ -1,0 +1,20 @@
+﻿<Window x:Class="EditorPerson.AddAbility"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EditorPerson"
+        mc:Ignorable="d"
+        Title="AddAbility" Height="250" Width="500">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Button Content="Speed x2" HorizontalAlignment="Left" Margin="0,79,0,0" VerticalAlignment="Top" Height="67" Width="142" Click="Button_Click"/>
+        <Button Content="Jump x2" HorizontalAlignment="Center" Margin="0,79,0,0" VerticalAlignment="Top" Height="67" Width="142" Grid.Column="1" Click="Button_Click_1"/>
+        <Button Content="Invisible +10%" HorizontalAlignment="Left" Margin="8,79,0,0" VerticalAlignment="Top" Height="67" Width="142" Grid.Column="2" Click="Button_Click_2"/>
+
+    </Grid>
+</Window>

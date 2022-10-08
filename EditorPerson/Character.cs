@@ -54,7 +54,7 @@ namespace EditorPerson
         }
     }
     [BsonKnownTypes(typeof(Wizard), typeof(Warrior), typeof(Rogue))]
-    class Character
+    public class Character
     {
         [BsonId]
         public ObjectId _id;

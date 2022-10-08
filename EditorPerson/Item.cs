@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace EditorPerson
 {
     
-    class Conditioin
+    public class Conditioin
     {
         int Strength;
         int Dexterity;
@@ -31,7 +31,7 @@ namespace EditorPerson
         }
     }
 
-    class Buf
+    public class Buf
     {
         int Strength;
         int Dexterity;
@@ -87,7 +87,7 @@ namespace EditorPerson
             return character;
         }
     }
-    class Item
+    public class Item
     {
         public string ItemName { get; set; }
         public int Cost { get; set; }
