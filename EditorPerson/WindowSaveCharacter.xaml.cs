@@ -30,7 +30,7 @@ namespace EditorPerson.Windows
             mainWindow.txtBoxName.Text = "";
             Initialize();
             Change();
-            CalcExp();
+            ProgressBarExp.Maximum = character.MaxExp;
             ProgressBarExp.Value = character.Exp;
             listViewItems.ItemsSource = ItemMaker.items;
             listViewInventar.ItemsSource = character.Items;
@@ -58,6 +58,7 @@ namespace EditorPerson.Windows
         public void CalcExp()
         {
             ProgressBarExp.Maximum += character.LVL * LvlOneExp;
+            character.MaxExp = (int)ProgressBarExp.Maximum;
         }
 
         public void CalcLVL()

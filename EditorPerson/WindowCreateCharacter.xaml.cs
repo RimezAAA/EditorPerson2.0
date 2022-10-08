@@ -74,6 +74,7 @@ namespace EditorPerson.Windows
         public void CalcExp()
         {
             ProgressBarExp.Maximum += character.LVL * LvlOneExp;
+            character.MaxExp = (int)ProgressBarExp.Maximum;
         }
 
         public void CalcLVL()
