@@ -74,9 +74,9 @@ namespace EditorPerson
         public int Exp { get; set; }
         public int Points { get; set; }
         [BsonIgnoreIfNull]
-        public List<Item> Items { get; set; }
         public List<Ability> Abilities { get; set; }
         public int MaxExp { get; set; }
+        public List<Item> Items { get; set; }
 
         public Character(int hp, double mannaPoint, double physicalDef, int magicalAttack, int strength, int dexterity, int constitution, int intellisence, int damage)
         {

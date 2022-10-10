@@ -37,6 +37,10 @@
         <Label Content="Comand 1:" HorizontalAlignment="Left" Margin="0,241,0,0" VerticalAlignment="Top" FontSize="24"/>
         <Label Content="Comand 2:" HorizontalAlignment="Left" Margin="454,241,0,0" VerticalAlignment="Top" FontSize="24"/>
         <Button x:Name="btndDstribute" Content="Распределить" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="44" Width="114" Click="btndDstribute_Click"/>
+        <Label Content="LVL" HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top" Height="48" Width="52" FontSize="24"/>
+        <Label x:Name="LVLComandOne" Content="0" HorizontalAlignment="Left" Margin="72,195,0,0" VerticalAlignment="Top" Height="48" Width="52" FontSize="24"/>
+        <Label Content="LVL" HorizontalAlignment="Left" Margin="585,195,0,0" VerticalAlignment="Top" Height="48" Width="52" FontSize="24"/>
+        <Label x:Name="LVLComandTwo" Content="0" HorizontalAlignment="Left" Margin="656,195,0,0" VerticalAlignment="Top" Height="48" Width="52" FontSize="24"/>
 
     </Grid>
 </Window>

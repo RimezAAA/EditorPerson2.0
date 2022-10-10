@@ -21,16 +21,17 @@ namespace EditorPerson
     public partial class AddAbility : Window
     {
         Character character;
-        public AddAbility(Character character)
+        public AddAbility(Character Character)
         {
             InitializeComponent();
-            this.character = character;
+            this.character = Character;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Ability speed = new Ability("Speed x2");
             character.Abilities.Add(speed);
+            MessageBox.Show("Completed");
             this.Close();
         }
 
@@ -38,6 +39,7 @@ namespace EditorPerson
         {
             Ability jump = new Ability("Jump x2");
             character.Abilities.Add(jump);
+            MessageBox.Show("Completed");
             this.Close();
         }
 
@@ -45,6 +47,7 @@ namespace EditorPerson
         {
             Ability invis = new Ability("Invisible +10%");
             character.Abilities.Add(invis);
+            MessageBox.Show("Completed");
             this.Close();
         }
     }

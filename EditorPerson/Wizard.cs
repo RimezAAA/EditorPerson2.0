@@ -36,6 +36,8 @@ namespace EditorPerson
             this.Points = wizard.Points;
             this.name = wizard.name;
             this._id = wizard._id;
+            this.MaxExp = wizard.MaxExp;
+            this.Abilities = wizard.Abilities;
         }
     }
 }

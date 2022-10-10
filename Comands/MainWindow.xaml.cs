@@ -33,20 +33,30 @@ namespace Comands
             var list = listCharacter.OrderBy(x => x.LVL).ToArray();
             var listComandsOne = new List<Character>();
             var listComandsTwo = new List<Character>();
-            var a = true;
+            var a = 0;
             if (list.Length % 2 == 0)
             {
                 for (int i = list.Length - 1; i >= 0; --i)
                 {
-                    if (a)
+                    if (a == 0)
                     {
                         listComandsOne.Add(list[i]);
-                        a= false;
+                        a= 1;
                     }
-                    else
+                    else if (a == 1)
                     {
                         listComandsTwo.Add(list[i]);
-                        a = true;
+                        a = 2;
+                    }
+                    else if (a ==2)
+                    {
+                        listComandsTwo.Add(list[i]);
+                        a = 3;
+                    }
+                    else if (a == 3)
+                    {
+                        listComandsOne.Add(list[i]);
+                        a = 0;
                     }
                     
                 }
@@ -55,23 +65,36 @@ namespace Comands
             {
                 for (int i = list.Length - 1; i > 0; --i)
                 {
-                    if (a)
+                    if (a == 0)
                     {
                         listComandsOne.Add(list[i]);
-                        a = false;
+                        a = 1;
                     }
-                    else
+                    else if (a == 1)
                     {
                         listComandsTwo.Add(list[i]);
-                        a = true;
+                        a = 2;
+                    }
+                    else if (a == 2)
+                    {
+                        listComandsTwo.Add(list[i]);
+                        a = 3;
+                    }
+                    else if (a == 3)
+                    {
+                        listComandsOne.Add(list[i]);
+                        a = 0;
                     }
                 }
             }
             ComandsOne.ItemsSource = listComandsOne;
             ComandsTwo.ItemsSource = listComandsTwo;
-            
-            
-            
+            foreach (var item in listComandsOne)
+                LVLComandOne.Content = Convert.ToInt32(LVLComandOne.Content) + item.LVL;
+            foreach (var item in listComandsTwo)
+                LVLComandTwo.Content = Convert.ToInt32(LVLComandTwo.Content) + item.LVL;
+
+
         }
     }
 }

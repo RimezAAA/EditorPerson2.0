@@ -36,6 +36,8 @@ namespace EditorPerson
             this.Points = warrior.Points;
             this.name = warrior.name;
             this._id = warrior._id;
+            this.MaxExp = warrior.MaxExp;
+            this.Abilities = warrior.Abilities;
         }
     }
 }

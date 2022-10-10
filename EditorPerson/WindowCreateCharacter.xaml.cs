@@ -84,9 +84,9 @@ namespace EditorPerson.Windows
                 ++character.LVL;
                 if (character.LVL % 3 == 0)
                 {
-                    AddAbility addAbility = new AddAbility(character);
-                    addAbility.Owner = this;
-                    addAbility.Show();
+                    //AddAbility addAbility = new AddAbility(character);
+                    //addAbility.Owner = this;
+                    //addAbility.Show();
                 }
                 character.Points += 5;
                 labelPoits.Content = character.Points;

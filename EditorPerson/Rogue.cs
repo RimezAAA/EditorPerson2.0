@@ -36,6 +36,8 @@ namespace EditorPerson
             this.Points = rogue.Points;
             this.name = rogue.name;
             this._id = rogue._id;
+            this.MaxExp = rogue.MaxExp;
+            this.Abilities = rogue.Abilities;
         }
     }
 }
