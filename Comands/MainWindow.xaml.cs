@@ -33,24 +33,38 @@ namespace Comands
             var list = listCharacter.OrderBy(x => x.LVL).ToArray();
             var listComandsOne = new List<Character>();
             var listComandsTwo = new List<Character>();
+            var a = true;
             if (list.Length % 2 == 0)
             {
                 for (int i = list.Length - 1; i >= 0; --i)
                 {
-                    if (i % 2 == 0)
+                    if (a)
+                    {
                         listComandsOne.Add(list[i]);
-                    else 
+                        a= false;
+                    }
+                    else
+                    {
                         listComandsTwo.Add(list[i]);
+                        a = true;
+                    }
+                    
                 }
             }
             else
             {
                 for (int i = list.Length - 1; i > 0; --i)
                 {
-                    if (i % 2 == 0)
+                    if (a)
+                    {
                         listComandsOne.Add(list[i]);
+                        a = false;
+                    }
                     else
+                    {
                         listComandsTwo.Add(list[i]);
+                        a = true;
+                    }
                 }
             }
             ComandsOne.ItemsSource = listComandsOne;
