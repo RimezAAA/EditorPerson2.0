@@ -9,7 +9,7 @@ using System.Windows.Controls;
 
 namespace EditorPerson
 {
-    class MongoExamples
+    public class MongoExamples
     {
         public static void AddToDB(Character user)
         {

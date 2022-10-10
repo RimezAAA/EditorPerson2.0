@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="800">
     <Grid>
-        <ListView Margin="220,0,220,271">
+        <ListView x:Name="listCharacters" Margin="220,0,220,271">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding name}" Width="150"/>
@@ -16,6 +16,27 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <ListView x:Name="ComandsOne" Margin="0,288,454,0">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding name}" Width="150"/>
+                    <GridViewColumn Header="Type" DisplayMemberBinding="{Binding type}" Width="150"/>
+                    <GridViewColumn Header="LVL" DisplayMemberBinding="{Binding LVL}" Width="30"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="ComandsTwo" Margin="454,288,0,0">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding name}" Width="150"/>
+                    <GridViewColumn Header="Type" DisplayMemberBinding="{Binding type}" Width="150"/>
+                    <GridViewColumn Header="LVL" DisplayMemberBinding="{Binding LVL}" Width="30"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label Content="Comand 1:" HorizontalAlignment="Left" Margin="0,241,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <Label Content="Comand 2:" HorizontalAlignment="Left" Margin="454,241,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <Button x:Name="btndDstribute" Content="Распределить" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="44" Width="114" Click="btndDstribute_Click"/>
 
     </Grid>
 </Window>
