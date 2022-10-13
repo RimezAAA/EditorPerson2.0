@@ -89,6 +89,8 @@ namespace Comands
             }
             ComandsOne.ItemsSource = listComandsOne;
             ComandsTwo.ItemsSource = listComandsTwo;
+            LVLComandOne.Content = "0";
+            LVLComandTwo.Content = "0";
             foreach (var item in listComandsOne)
                 LVLComandOne.Content = Convert.ToInt32(LVLComandOne.Content) + item.LVL;
             foreach (var item in listComandsTwo)
