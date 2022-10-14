@@ -29,64 +29,37 @@ namespace Comands
 
         private void btndDstribute_Click(object sender, RoutedEventArgs e)
         {
+            Random rnd  = new Random();
             List<Character> listCharacter = (List<Character>)listCharacters.ItemsSource;
             var list = listCharacter.OrderBy(x => x.LVL).ToArray();
             var listComandsOne = new List<Character>();
             var listComandsTwo = new List<Character>();
-            var a = 0;
-            if (list.Length % 2 == 0)
+            var check = 0;
+            var conditionI = list.Length % 2 == 0 ? 0 : 1;
+            for (int i = list.Length - 1; i >= conditionI; --i)
             {
-                for (int i = list.Length - 1; i >= 0; --i)
+                if (check == 0)
                 {
-                    if (a == 0)
-                    {
-                        listComandsOne.Add(list[i]);
-                        a= 1;
-                    }
-                    else if (a == 1)
-                    {
-                        listComandsTwo.Add(list[i]);
-                        a = 2;
-                    }
-                    else if (a ==2)
-                    {
-                        listComandsTwo.Add(list[i]);
-                        a = 3;
-                    }
-                    else if (a == 3)
-                    {
-                        listComandsOne.Add(list[i]);
-                        a = 0;
-                    }
-                    
+                    listComandsOne.Add(list[i]);
+                    check = 1;
+                }
+                else if (check == 1)
+                {
+                    listComandsTwo.Add(list[i]);
+                    check = 2;
+                }
+                else if (check == 2)
+                {
+                    listComandsTwo.Add(list[i]);
+                    check = 3;
+                }
+                else if (check == 3)
+                {
+                    listComandsOne.Add(list[i]);
+                    check = 0;
                 }
             }
-            else
-            {
-                for (int i = list.Length - 1; i > 0; --i)
-                {
-                    if (a == 0)
-                    {
-                        listComandsOne.Add(list[i]);
-                        a = 1;
-                    }
-                    else if (a == 1)
-                    {
-                        listComandsTwo.Add(list[i]);
-                        a = 2;
-                    }
-                    else if (a == 2)
-                    {
-                        listComandsTwo.Add(list[i]);
-                        a = 3;
-                    }
-                    else if (a == 3)
-                    {
-                        listComandsOne.Add(list[i]);
-                        a = 0;
-                    }
-                }
-            }
+
             ComandsOne.ItemsSource = listComandsOne;
             ComandsTwo.ItemsSource = listComandsTwo;
             LVLComandOne.Content = "0";
