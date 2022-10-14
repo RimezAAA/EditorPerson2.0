@@ -34,29 +34,21 @@ namespace Comands
             var list = listCharacter.OrderBy(x => x.LVL).ToArray();
             var listComandsOne = new List<Character>();
             var listComandsTwo = new List<Character>();
-            var check = 0;
+            var check = rnd.Next(0, 2);
             var conditionI = list.Length % 2 == 0 ? 0 : 1;
-            for (int i = list.Length - 1; i >= conditionI; --i)
+            for (int i = list.Length - 2; i >= conditionI; i -= 2)
             {
                 if (check == 0)
                 {
                     listComandsOne.Add(list[i]);
-                    check = 1;
+                    listComandsTwo.Add(list[i+1]);
+                    check = rnd.Next(0,2);
                 }
                 else if (check == 1)
                 {
                     listComandsTwo.Add(list[i]);
-                    check = 2;
-                }
-                else if (check == 2)
-                {
-                    listComandsTwo.Add(list[i]);
-                    check = 3;
-                }
-                else if (check == 3)
-                {
-                    listComandsOne.Add(list[i]);
-                    check = 0;
+                    listComandsOne.Add(list[i+1]);
+                    check = rnd.Next(0, 2);
                 }
             }
 
